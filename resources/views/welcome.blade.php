@@ -96,6 +96,9 @@
                 <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
                     Add some Chanegs by child  3.
                 </div>
+                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
+                    Add some Chanegs by parent   55.
+                </div>
 
 
 
