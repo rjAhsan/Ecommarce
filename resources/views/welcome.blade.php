@@ -87,6 +87,11 @@
                    Add some Chanegs by Child
                                    </div>
 
+                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
+                    Add some Chanegs by parent 2
+                </div>
+
+
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
