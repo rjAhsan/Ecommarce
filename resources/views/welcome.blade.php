@@ -84,9 +84,10 @@
                 Fresh Installations For Laravel+vue
                 </div>
                 <div class="title m-b-md" style="background-color: #1d643b;color: #c0ddf6">
-                 I'm here for doing ypur crud operations let do it .
-                </div>
-                <h1>Im a child Branch .</h1>
+                pulled branch (development 2 )and
+
+                                </div>
+
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
