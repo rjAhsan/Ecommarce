@@ -83,29 +83,10 @@
                 <div class="title m-b-md" style="background-color: #1d643b;color: #c0ddf6">
                 Fresh Installations For Laravel+vue
                 </div>
-                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
-                   Add some Chanegs by Child
-                                   </div>
-                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
-                    Add some Chanegs by Parent 1.
+                <div class="title m-b-md" style="background-color: #1d643b;color: #c0ddf6">
+                 I'm here for doing ypur crud operations let do it .
                 </div>
-
-                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
-                    Add some Chanegs by child  2.
-                </div>
-                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
-                    Add some Chanegs by child  3.
-                </div>
-                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
-                    Add some Chanegs by parent   55.
-                </div>
-
-
-
-                <div class="title m-b-md" style="background-color: #1f6fb2 ;color: #c0ddf6">
-                    Add some Chanegs by parent 2
-                </div>
-
+                <h1>Im a child Branch .</h1>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
