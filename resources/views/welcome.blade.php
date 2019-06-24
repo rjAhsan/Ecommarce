@@ -81,12 +81,8 @@
 
             <div class="content">
                 <div class="title m-b-md" style="background-color: #1d643b;color: #c0ddf6">
-                Fresh Installations For Laravel+vue
+                Welcome To Crud Oops Using Laravel And  VuJs
                 </div>
-                <div class="title m-b-md" style="background-color: #1d643b;color: #c0ddf6">
-                 I'm here for doing ypur crud operations let do it .
-                </div>
-                <h1>Im a child Branch .</h1>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
