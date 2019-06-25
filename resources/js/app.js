@@ -11,15 +11,14 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
-import HomeComponent from './components/HomeComponent.vue';
-import CreateComponent from './components/CreateComponent.vue';
-import indexComponent  from './components/indexComponent.vue';
-import EditComponent from './components/EditComponent.vue';
-
+import Routes from './route';
+import Ex from './components/ExampleComponent.vue';
 
 Vue.use(VueRouter,VueAxios,axios);
 
-
+const router =new VueRouter({
+routes:Routes
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -32,8 +31,8 @@ Vue.use(VueRouter,VueAxios,axios);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-// Vue.component('Header-Component', require('./components/HeaderComponent.vue').default);
+ // Vue.component('Home-component', require('./components/HomeComponent.vue').default);
+ //  Vue.component('Exapmle-Component', require('./components/ExampleComponent.vue').default);
 
 
 
@@ -42,31 +41,11 @@ Vue.use(VueRouter,VueAxios,axios);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const routes=[
-    {
-        name: 'home',
-        path: '/',
-        component: HomeComponent
-    },
-    {
-        name: 'create',
-        path: '/create',
-        component: CreateComponent
-    },
-    {
-        name: 'posts',
-        path: '/posts',
-        component: indexComponent
-    },
-    {
-        name: 'edit',
-        path: '/edit/:id',
-        component: EditComponent
-    }
+
+const app = new Vue({
+    el: '#app',
+    render: h=>h(Ex),
+    router:router
 
 
-
-];
-
-const router = new VueRouter({ mode: 'history',routes:routes});
-const app = new Vue(Vue.util.extend({ router })).$mount('#app');
+});

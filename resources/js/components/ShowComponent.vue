@@ -3,10 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Home Component</div>
+                    <div class="card-header">Show Component</div>
 
                     <div class="card-body">
-                        I'm an Home component.
+                        I'm an Show component.
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        name: "HomeComponent"
+        name: "ShowComponent"
     }
 </script>
 
