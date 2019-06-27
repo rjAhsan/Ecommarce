@@ -12,7 +12,6 @@ import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 import Routes from './route';
-import Ex from './components/ExampleComponent.vue';
 
 Vue.use(VueRouter,VueAxios,axios);
 
@@ -44,7 +43,6 @@ routes:Routes
 
 const app = new Vue({
     el: '#app',
-    render: h=>h(Ex),
     router:router
 
 

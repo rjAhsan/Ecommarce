@@ -1,7 +1,12 @@
-import Home from './components/HomeComponent.vue';
+
 import Show from './components/ShowComponent.vue';
+import Home from './components/Home.vue';
+import Service from './components/Service.vue';
+import About from './components/About.vue';
 
 export default [
-    {path:'/',component:Home},
-    {path:'/show',component:Show}
+    {path:'/Home',component:Home},
+    {path:'/Service',component:Service},
+    {path:'/About',component:About},
+
 ]

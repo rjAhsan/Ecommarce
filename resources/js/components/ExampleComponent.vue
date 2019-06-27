@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <router-view></router-view>
+        <H1>Pakistan Zindabad</H1>
+
     </div>
 </template>
 
