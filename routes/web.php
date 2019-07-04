@@ -14,4 +14,6 @@
 Route::get('/', function () {
     return view('post');
 });
+Route::resource('nameList','TodoController');
 
+//Route::get('/newdata','TodoController@index');

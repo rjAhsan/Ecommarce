@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
     <meta name="csrf-token" value="{{ csrf_token() }}" />
 
 </head>
 <body>
 <div id="app">
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand/logo -->
     <a class="navbar-brand" href="#"><strong><span>LOGO</span></strong></a>
 
@@ -30,6 +30,7 @@
         </li>
     </ul>
 </nav>
+</div>
     <router-view></router-view>
 </div>
 </body>

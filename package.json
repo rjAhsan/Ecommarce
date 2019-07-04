@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "material-design-icons-iconfont": "^5.0.1",
         "npm": "^6.9.0",
         "vue-axios": "^2.1.4",
         "vue-router": "^3.0.6",

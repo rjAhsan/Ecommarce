@@ -4,16 +4,23 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
-
-window.Vue = require('vue');
-
 import VueRouter from 'vue-router';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 import Routes from './route';
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
+import Vue from 'vue';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
+require('./bootstrap');
+
+window.Vue = require('vue');
+
 
 Vue.use(VueRouter,VueAxios,axios);
+
+Vue.use(Vuetify);
 
 const router =new VueRouter({
 routes:Routes
@@ -43,7 +50,8 @@ routes:Routes
 
 const app = new Vue({
     el: '#app',
-    router:router
+    router:router,
+
 
 
 });

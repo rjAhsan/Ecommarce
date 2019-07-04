@@ -14,7 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $name=Todo::all();
+        return request()->json(200,$name);
     }
 
     /**
@@ -57,7 +58,7 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -80,6 +81,10 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $del=Todo::findOrfail($id);
+        $del->delete();
+        $namee=Todo::all();
+            return response()->json(200,$namee);
+
     }
 }
