@@ -15,5 +15,7 @@ Route::get('/', function () {
     return view('post');
 });
 Route::resource('nameList','TodoController');
+Route::get('CreatePOSt','TodoController@CreatePOSt');
+
 
 //Route::get('/newdata','TodoController@index');

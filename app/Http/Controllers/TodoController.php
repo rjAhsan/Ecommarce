@@ -12,6 +12,11 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function  CreatePOSt(Request $request){
+       $var=$request->all();
+       dd($var);
+
+      }
     public function index()
     {
         $name=Todo::all();
