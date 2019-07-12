@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><h1>Name Data<span><button class="btn btn-success" @click="AddNew">ADD NEW</button></span></h1></div>
-                    <add-post v-if="AddPostShow" @Clicked="Getdata"></add-post>
+                    <Edit-post v-if="Editpostshow" :Editdatashow="data_id"></Edit-post>
+                    <add-post v-if="AddPostShow" @Closewindoe="closewindow" :showdata="showdata" ></add-post>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item " v-for="i in task">{{i.id}} - {{i.name}}<span class="pull-right"> <button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button></span>
+                            <li class="list-group-item " v-for="i in task">{{i.id}} - {{i.name}}<span class="pull-right"> <button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button> | <button class="btn btn-primary" @click="Showitem($event, i.name)">Show</button></span>
                             </li>
                         </ul>
                  </div>
@@ -20,9 +20,11 @@
 
 <script>
 import Addposts from './Addposts.vue';
+import EditPosts from './Edit.vue';
     export default {
         components: {
             'add-post': Addposts,
+            'Edit-post':EditPosts,
         },
         data(){
             return{
@@ -30,9 +32,11 @@ import Addposts from './Addposts.vue';
         task:{},
         AddPostShow:false,
         Name:null,
-
-                  }
-        },
+        showdata:null,
+        Editpostshow:false,
+        Editdatashow:null,
+            }
+            },
         created(){
            axios.get('/nameList')
                 .then((response)=>this.task=response.data)
@@ -41,32 +45,41 @@ import Addposts from './Addposts.vue';
         },
         methods:{
         Deleteitem: function(id){
-            // const reply = confirm("Are you want to deleyte thee name ?");
-            // axios.get('/nameList/'+id,{
-            //     id:id,
-            //     _method:'DELETE'
-            //
-            // }).then((response)=>this.task=response.data)
-            //     .catch(console.log("Error"));
+            //const reply = confirm("Are you want to deleyte thee name ?");
+
+                axios.delete('/delete/' + id,)
+                    .then((response) => {
+                         this.$router.push({path:'/About'})
+                        //window.location.reload(true)
+                    });
+            console.log(id);
+
+
+
         },
         updateitem:function($event,i){
-            console.log(i)
-        },
-        AddNew:function(){
-            this.AddPostShow=true;
-            this.Getdata();
-            this.CreatePost();
-        },
-        CreatePost:function(){
-            axios.get('/CreatePOSt',{'Name':this.Name})
-                .then((response)=>this.task=response.data)
-                .catch(console.log("CATCH ERROR"));
-        },
+             this.Editdatashow=i;
+             this.Editpostshow=true;
+            console.log(i);
 
-       Getdata:function(){
-           this.Name=Name;
+
+         },
+        Showitem:function($event,i){
+            this.showdata=i;
+            this.AddPostShow=true;
+            console.log(this.showdata);
 
             },
+
+       Getdata:function(){
+               console.log(this.Name)
+              axios.get('/CreatePOSt',{'Name':this.Name})
+               .then((response)=>this.task=response.data)
+               .catch(console.log(" We CATCH ERROR"));
+ },
+            closewindow:function(){
+            this.AddPostShow=false;
+            }
 
     }
     }

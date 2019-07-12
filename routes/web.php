@@ -15,7 +15,10 @@ Route::get('/', function () {
     return view('post');
 });
 Route::resource('nameList','TodoController');
-Route::get('CreatePOSt','TodoController@CreatePOSt');
+
+Route::post('/CreatePost','TodoController@CreatePOSt');
+Route::delete('/delete/{id}','TodoController@delPOSt');
+Route::any('/Editdata/{id}','TodoController@EditPost');
 
 
 //Route::get('/newdata','TodoController@index');

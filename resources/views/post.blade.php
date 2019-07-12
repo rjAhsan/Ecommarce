@@ -22,7 +22,7 @@
        </span>
        </li>
         <li class="nav-item">
-            <router-link to="/Service">Service</router-link>
+            <router-link to="/CreatePost">Service</router-link>
 
         </li>
         <li class="nav-item">

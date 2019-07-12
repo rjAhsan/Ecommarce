@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//
+//Route::get('/api/data','TodoController@index');
+
+Route::resource('nameList','TodoController');
+Route::delete('delete/{id}','TodoController@delPOSt');
+Route::get('/Ahsan', function() {
+    // If the Content-Type and Accept headers are set to 'application/json',
+    // this will return a JSON structure. This will be cleaned up later.
+    return response()->json('successfully added');
+});

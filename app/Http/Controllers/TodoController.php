@@ -13,8 +13,24 @@ class TodoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function  CreatePOSt(Request $request){
-       $var=$request->all();
-       dd($var);
+//        $var=$request->get('name');
+//        dd($var);
+
+        Todo::create($request->all());
+        return response()->json('successfully added');
+
+
+      }
+public function EditPost($id){
+    $name= Todo::findOrFail($id);
+      return request()->json(200,$name);
+
+}
+
+      public function delPOSt($id){
+        $var =Todo::findOrFail($id);
+        $var->delete();
+          return response()->json('successfully Deleted');
 
       }
     public function index()
@@ -52,7 +68,10 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        //
+        $var= Todo::findOrFail($id);
+        return request()->json(200,$var);
+
+
     }
 
     /**

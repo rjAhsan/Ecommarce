@@ -4,13 +4,13 @@
 
             <v-card>
                 <v-card-title>
-                    <span class="headline">Add New Data</span>
+                    <span class="headline">Edit Data</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12 sm6 md4>
-                                <v-text-field label="Legal first name*" required v-model="this.showdata" ></v-text-field>
+                                <v-text-field label="Legal first name*" required v-model="this.data.name" ></v-text-field>
                             </v-flex>
 
                         </v-layout>
@@ -29,17 +29,22 @@
 
 <script>
     export default {
+        props:['data_id'],
         data: () => ({
             dialog: true,
-            Name:null,
-            closeWindoe:true
+            closeWindoe:true,
+            data:null
 
         }),
-        props:['showdata'],
+        created(){
+            var id=this.data_id;
+           axios.get('/Editdata/'+id)
+              .then((response)=> this.data=response.data).
+              catch(console.log("Error"));
+           console.log(response.data);
+    },
 
-
-
-        methods: {
+             methods: {
             getdata: function(event){
                 this.$emit('Clicked',this.Name);
                 // console.log(this.Name);
