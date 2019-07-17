@@ -3,11 +3,11 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <Edit-post v-if="Editpostshow" :Editdatashow="data_id"></Edit-post>
+                    <edit-post v-if="Editpostshow"    @Closewindoe="closeEditwindow"  :editdata="editdata"></edit-post>
                     <add-post v-if="AddPostShow" @Closewindoe="closewindow" :showdata="showdata" ></add-post>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item " v-for="i in task">{{i.id}} - {{i.name}}<span class="pull-right"> <button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button> | <button class="btn btn-primary" @click="Showitem($event, i.name)">Show</button></span>
+                            <li class="list-group-item " v-for="i in task">{{i.id}} - {{i.name}} | <span class="pull-right"> |<button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button> | <button class="btn btn-primary" @click="Showitem($event, i.name)">Show</button></span>
                             </li>
                         </ul>
                  </div>
@@ -24,7 +24,7 @@ import EditPosts from './Edit.vue';
     export default {
         components: {
             'add-post': Addposts,
-            'Edit-post':EditPosts,
+            'edit-post':EditPosts,
         },
         data(){
             return{
@@ -34,7 +34,8 @@ import EditPosts from './Edit.vue';
         Name:null,
         showdata:null,
         Editpostshow:false,
-        Editdatashow:null,
+        editdata:null,
+
             }
             },
         created(){
@@ -49,7 +50,7 @@ import EditPosts from './Edit.vue';
 
                 axios.delete('/delete/' + id,)
                     .then((response) => {
-                         this.$router.push({path:'/About'})
+                         this.$router.pop({path:'/Home'})
                         //window.location.reload(true)
                     });
             console.log(id);
@@ -57,10 +58,13 @@ import EditPosts from './Edit.vue';
 
 
         },
-        updateitem:function($event,i){
-             this.Editdatashow=i;
-             this.Editpostshow=true;
-            console.log(i);
+        updateitem:function($event,id){
+
+             // this.Editpostshow=true;
+            this.editdata=id;
+            this.Editpostshow=true;
+            // console.log(this.editdata);
+
 
 
          },
@@ -79,7 +83,10 @@ import EditPosts from './Edit.vue';
  },
             closewindow:function(){
             this.AddPostShow=false;
-            }
+            },
+            closeEditwindow:function(){
+            this.Editpostshow=false;
+            },
 
     }
     }

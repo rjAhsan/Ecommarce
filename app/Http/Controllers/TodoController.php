@@ -22,8 +22,18 @@ class TodoController extends Controller
 
       }
 public function EditPost($id){
-    $name= Todo::findOrFail($id);
-      return request()->json(200,$name);
+
+      $name= Todo::findOrFail($id);
+
+      return request()->json(200,$name->name);
+
+}
+
+public function EditData(Request $request,$id){
+        $name=Todo::findOrFail($id);
+        $name->name=$request->get('name');
+        $name->save();
+        return response()->json('uccessfully Update');
 
 }
 

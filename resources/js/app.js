@@ -23,7 +23,8 @@ Vue.use(VueRouter,VueAxios,axios);
 Vue.use(Vuetify);
 
 const router =new VueRouter({
-routes:Routes
+routes:Routes,
+ mode: 'history'
 });
 
 /**

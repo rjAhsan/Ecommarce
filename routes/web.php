@@ -18,7 +18,7 @@ Route::resource('nameList','TodoController');
 
 Route::post('/CreatePost','TodoController@CreatePOSt');
 Route::delete('/delete/{id}','TodoController@delPOSt');
-Route::any('/Editdata/{id}','TodoController@EditPost');
-
+Route::get('/Editdata/{id}','TodoController@EditPost');
+Route::post('Editdata/{id}','TodoController@EditData');
 
 //Route::get('/newdata','TodoController@index');

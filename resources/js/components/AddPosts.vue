@@ -4,13 +4,13 @@
 
             <v-card>
                 <v-card-title>
-                    <span class="headline">Add New Data</span>
+                    <span class="headline">Show Data</span>
                 </v-card-title>
                 <v-card-text>
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12 sm6 md4>
-                                <v-text-field label="Legal first name*" required v-model="this.showdata" ></v-text-field>
+                                <v-text-field label="Legal first name*" required v-model="this.showdata" readonly ></v-text-field>
                             </v-flex>
 
                         </v-layout>
@@ -29,22 +29,19 @@
 
 <script>
     export default {
-        data: () => ({
-            dialog: true,
-            Name:null,
-            closeWindoe:true
+        data() {
+            return {
+                dialog: true,
+                Name:null,
+                closeWindoe:true
+            }},
 
-        }),
         props:['showdata'],
 
 
 
         methods: {
-            getdata: function(event){
-                this.$emit('Clicked',this.Name);
-                // console.log(this.Name);
 
-            },
             closewindow:function (event){
                 this.$emit('Closewindoe',this.closeWindoe);
             }

@@ -1824,9 +1824,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['showdata'],
   methods: {
-    getdata: function getdata(event) {
-      this.$emit('Clicked', this.Name); // console.log(this.Name);
-    },
     closewindow: function closewindow(event) {
       this.$emit('Closewindoe', this.closeWindoe);
     }
@@ -1932,30 +1929,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['data_id'],
   data: function data() {
     return {
       dialog: true,
       closeWindoe: true,
-      data: null
+      data: null,
+      dataA: null
     };
   },
+  props: ['editdata'],
   created: function created() {
     var _this = this;
 
-    var id = this.data_id;
+    console.log();
+    var id = this.editdata;
     axios.get('/Editdata/' + id).then(function (response) {
-      return _this.data = response.data;
+      return _this.dataA = response.data;
     })["catch"](console.log("Error"));
-    console.log(response.data);
   },
   methods: {
-    getdata: function getdata(event) {
-      this.$emit('Clicked', this.Name); // console.log(this.Name);
-    },
     closewindow: function closewindow(event) {
       this.$emit('Closewindoe', this.closeWindoe);
+    },
+    EditName: function EditName() {
+      var _this2 = this;
+
+      var id = this.editdata;
+      axios.post('/Editdata/' + id, {
+        name: this.dataA
+      }).then(function (response) {
+        _this2.closewindow(), _this2.$router.push({
+          name: 'Home'
+        });
+      });
     }
   }
 });
@@ -1998,7 +2006,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'add-post': _Addposts_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    'Edit-post': _Edit_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    'edit-post': _Edit_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -2007,7 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
       Name: null,
       showdata: null,
       Editpostshow: false,
-      Editdatashow: null
+      editdata: null
     };
   },
   created: function created() {
@@ -2025,17 +2033,17 @@ __webpack_require__.r(__webpack_exports__);
 
       //const reply = confirm("Are you want to deleyte thee name ?");
       axios["delete"]('/delete/' + id).then(function (response) {
-        _this2.$router.push({
-          path: '/About'
+        _this2.$router.pop({
+          path: '/Home'
         }); //window.location.reload(true)
 
       });
       console.log(id);
     },
-    updateitem: function updateitem($event, i) {
-      this.Editdatashow = i;
-      this.Editpostshow = true;
-      console.log(i);
+    updateitem: function updateitem($event, id) {
+      // this.Editpostshow=true;
+      this.editdata = id;
+      this.Editpostshow = true; // console.log(this.editdata);
     },
     Showitem: function Showitem($event, i) {
       this.showdata = i;
@@ -2054,6 +2062,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     closewindow: function closewindow() {
       this.AddPostShow = false;
+    },
+    closeEditwindow: function closeEditwindow() {
+      this.Editpostshow = false;
     }
   }
 });
@@ -38189,9 +38200,7 @@ var render = function() {
             "v-card",
             [
               _c("v-card-title", [
-                _c("span", { staticClass: "headline" }, [
-                  _vm._v("Add New Data")
-                ])
+                _c("span", { staticClass: "headline" }, [_vm._v("Show Data")])
               ]),
               _vm._v(" "),
               _c(
@@ -38212,7 +38221,8 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   label: "Legal first name*",
-                                  required: ""
+                                  required: "",
+                                  readonly: ""
                                 },
                                 model: {
                                   value: this.showdata,
@@ -38413,11 +38423,11 @@ var render = function() {
                                   required: ""
                                 },
                                 model: {
-                                  value: this.data.name,
+                                  value: _vm.dataA,
                                   callback: function($$v) {
-                                    _vm.$set(this.data, "name", $$v)
+                                    _vm.dataA = $$v
                                   },
-                                  expression: "this.data.name"
+                                  expression: "dataA"
                                 }
                               })
                             ],
@@ -38428,9 +38438,7 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("small", [_vm._v("*indicates required field")])
+                  )
                 ],
                 1
               ),
@@ -38439,6 +38447,15 @@ var render = function() {
                 "v-card-actions",
                 [
                   _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "blue darken-1", flat: "" },
+                      on: { click: _vm.EditName }
+                    },
+                    [_vm._v("Save")]
+                  ),
                   _vm._v(" "),
                   _c(
                     "v-btn",
@@ -38491,7 +38508,10 @@ var render = function() {
           { staticClass: "panel panel-default" },
           [
             _vm.Editpostshow
-              ? _c("Edit-post", { attrs: { Editdatashow: _vm.data_id } })
+              ? _c("edit-post", {
+                  attrs: { editdata: _vm.editdata },
+                  on: { Closewindoe: _vm.closeEditwindow }
+                })
               : _vm._e(),
             _vm._v(" "),
             _vm.AddPostShow
@@ -38507,8 +38527,9 @@ var render = function() {
                 { staticClass: "list-group" },
                 _vm._l(_vm.task, function(i) {
                   return _c("li", { staticClass: "list-group-item " }, [
-                    _vm._v(_vm._s(i.id) + " - " + _vm._s(i.name)),
+                    _vm._v(_vm._s(i.id) + " - " + _vm._s(i.name) + " | "),
                     _c("span", { staticClass: "pull-right" }, [
+                      _vm._v(" |"),
                       _c(
                         "button",
                         {
@@ -79486,7 +79507,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"], vue_axios__WEBPACK_IMPORTED_MODULE_1___default.a, axios__WEBPACK_IMPORTED_MODULE_2___default.a);
 vue__WEBPACK_IMPORTED_MODULE_6___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_4___default.a);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  routes: _route__WEBPACK_IMPORTED_MODULE_3__["default"]
+  routes: _route__WEBPACK_IMPORTED_MODULE_3__["default"],
+  mode: 'history'
 });
 /**
  * The following block of code may be used to automatically register your

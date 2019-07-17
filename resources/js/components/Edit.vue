@@ -10,15 +10,16 @@
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12 sm6 md4>
-                                <v-text-field label="Legal first name*" required v-model="this.data.name" ></v-text-field>
+                                <v-text-field label="Legal first name*" required v-model="dataA" ></v-text-field>
                             </v-flex>
 
                         </v-layout>
                     </v-container>
-                    <small>*indicates required field</small>
+
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" flat @click="EditName">Save</v-btn>
                     <v-btn color="blue darken-1" flat @click="closewindow">Close</v-btn>
 
                 </v-card-actions>
@@ -29,30 +30,41 @@
 
 <script>
     export default {
-        props:['data_id'],
-        data: () => ({
-            dialog: true,
-            closeWindoe:true,
-            data:null
+       data() {
+            return {
+                dialog: true,
+                closeWindoe:true,
+                data:null,
+                dataA:null,
+            }},
 
-        }),
+        props:['editdata'],
+
         created(){
-            var id=this.data_id;
-           axios.get('/Editdata/'+id)
-              .then((response)=> this.data=response.data).
+            console.log();
+            let id=this.editdata;
+            axios.get('/Editdata/'+id)
+              .then((response)=> this.dataA=response.data).
               catch(console.log("Error"));
-           console.log(response.data);
-    },
+
+        },
 
              methods: {
-            getdata: function(event){
-                this.$emit('Clicked',this.Name);
-                // console.log(this.Name);
 
-            },
             closewindow:function (event){
                 this.$emit('Closewindoe',this.closeWindoe);
-            }
+            },
+                 EditName:function (){
+                    let id=this.editdata;
+                     axios.post('/Editdata/'+id, {name:this.dataA})
+                         .then((response) => {
+                             this.closewindow(),
+                             this.$router.push({name:'Home'});
+
+                         })
+
+
+                 }
 
 
         }
