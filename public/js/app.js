@@ -2001,6 +2001,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2010,12 +2027,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      Results: {},
+      Search: false,
       task: {},
       AddPostShow: false,
       Name: null,
       showdata: null,
       Editpostshow: false,
-      editdata: null
+      editdata: null,
+      Searchitem: null
     };
   },
   created: function created() {
@@ -2028,6 +2048,11 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    // Seaerchdataitem:function(){
+    //     axios.get('/nameList')
+    //         .then((response)=>this.task=response.data)
+    //         .catch((error)=>console.log("Not get any data "));
+    // },
     Deleteitem: function Deleteitem(id) {
       var _this2 = this;
 
@@ -2065,6 +2090,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     closeEditwindow: function closeEditwindow() {
       this.Editpostshow = false;
+    },
+    submit: function submit() {
+      var _this4 = this;
+
+      if (this.Searchitem.length > 3) {
+        var keyWord = this.Searchitem;
+        console.log(keyWord);
+        axios.get('/search/' + keyWord).then(function (response) {
+          return _this4.task = response.data;
+        })["catch"](function (error) {
+          return error;
+        });
+      } else {
+        console.log("NOT ");
+      }
     }
   }
 });
@@ -38507,6 +38547,25 @@ var render = function() {
           "div",
           { staticClass: "panel panel-default" },
           [
+            _c(
+              "v-flex",
+              { attrs: { xs12: "", sm6: "" } },
+              [
+                _c("v-text-field", {
+                  attrs: { label: "Search-Item ", "single-line": "", solo: "" },
+                  on: { keyup: _vm.submit },
+                  model: {
+                    value: _vm.Searchitem,
+                    callback: function($$v) {
+                      _vm.Searchitem = $$v
+                    },
+                    expression: "Searchitem"
+                  }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
             _vm.Editpostshow
               ? _c("edit-post", {
                   attrs: { editdata: _vm.editdata },

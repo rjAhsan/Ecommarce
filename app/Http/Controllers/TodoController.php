@@ -21,7 +21,18 @@ class TodoController extends Controller
 
 
       }
-public function EditPost($id){
+
+      public function Search($keyWord,Request $request){
+
+          $posts = Todo::where('name','like','%'.$keyWord.'%')->get();
+            //dd($posts);
+          return request()->json(200,$posts);
+
+    }
+
+
+
+    public function EditPost($id){
 
       $name= Todo::findOrFail($id);
 

@@ -20,5 +20,7 @@ Route::post('/CreatePost','TodoController@CreatePOSt');
 Route::delete('/delete/{id}','TodoController@delPOSt');
 Route::get('/Editdata/{id}','TodoController@EditPost');
 Route::post('Editdata/{id}','TodoController@EditData');
+Route::get('/search/{keyWord}','TodoController@Search');
+
 
 //Route::get('/newdata','TodoController@index');
