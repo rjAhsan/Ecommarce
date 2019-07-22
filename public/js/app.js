@@ -2018,6 +2018,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2027,7 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      Results: {},
+      Result: {},
       Search: false,
       task: {},
       AddPostShow: false,
@@ -2035,7 +2040,8 @@ __webpack_require__.r(__webpack_exports__);
       showdata: null,
       Editpostshow: false,
       editdata: null,
-      Searchitem: null
+      Searchitem: null,
+      ShowSearch: false
     };
   },
   created: function created() {
@@ -2096,14 +2102,16 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.Searchitem.length > 3) {
         var keyWord = this.Searchitem;
+        this.ShowSearch = true;
         console.log(keyWord);
         axios.get('/search/' + keyWord).then(function (response) {
-          return _this4.task = response.data;
+          return _this4.Result = response.data;
         })["catch"](function (error) {
           return error;
         });
       } else {
-        console.log("NOT ");
+        this.ShowSearch = false;
+        console.log("Not Search ...");
       }
     }
   }
@@ -38580,59 +38588,113 @@ var render = function() {
                 })
               : _vm._e(),
             _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _c(
-                "ul",
-                { staticClass: "list-group" },
-                _vm._l(_vm.task, function(i) {
-                  return _c("li", { staticClass: "list-group-item " }, [
-                    _vm._v(_vm._s(i.id) + " - " + _vm._s(i.name) + " | "),
-                    _c("span", { staticClass: "pull-right" }, [
-                      _vm._v(" |"),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          on: {
-                            click: function($event) {
-                              return _vm.Deleteitem(i.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Delete")]
-                      ),
-                      _vm._v(" | "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          on: {
-                            click: function($event) {
-                              return _vm.updateitem($event, i.id)
-                            }
-                          }
-                        },
-                        [_vm._v("Update")]
-                      ),
-                      _vm._v(" | "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary",
-                          on: {
-                            click: function($event) {
-                              return _vm.Showitem($event, i.name)
-                            }
-                          }
-                        },
-                        [_vm._v("Show")]
-                      )
-                    ])
-                  ])
-                }),
-                0
-              )
-            ])
+            _vm.ShowSearch
+              ? _c("div", { staticClass: "panel-body" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "list-group" },
+                    _vm._l(_vm.Result, function(i) {
+                      return _c("li", { staticClass: "list-group-item " }, [
+                        _vm._v(_vm._s(i.id) + " - " + _vm._s(i.name) + " | "),
+                        _c("span", { staticClass: "pull-right" }, [
+                          _vm._v(" |"),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.Deleteitem(i.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          ),
+                          _vm._v(" | "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateitem($event, i.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Update")]
+                          ),
+                          _vm._v(" | "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.Showitem($event, i.name)
+                                }
+                              }
+                            },
+                            [_vm._v("Show")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              : _c("div", { staticClass: "panel-body" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "list-group" },
+                    _vm._l(_vm.task, function(i) {
+                      return _c("li", { staticClass: "list-group-item " }, [
+                        _vm._v(_vm._s(i.id) + " - " + _vm._s(i.name) + " | "),
+                        _c("span", { staticClass: "pull-right" }, [
+                          _vm._v(" |"),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger",
+                              on: {
+                                click: function($event) {
+                                  return _vm.Deleteitem(i.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          ),
+                          _vm._v(" | "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.updateitem($event, i.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Update")]
+                          ),
+                          _vm._v(" | "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              on: {
+                                click: function($event) {
+                                  return _vm.Showitem($event, i.name)
+                                }
+                              }
+                            },
+                            [_vm._v("Show")]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                ])
           ],
           1
         )

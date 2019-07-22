@@ -17,16 +17,21 @@
 
 
 
-                    <div class="panel-body">
+                    <div v-if="ShowSearch" class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item " v-for="i in task">{{i.id}} - {{i.name}} | <span class="pull-right"> |<button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button> | <button class="btn btn-primary" @click="Showitem($event, i.name)">Show</button></span>
+                            <li class="list-group-item " v-for="i in Result">{{i.id}} - {{i.name}} | <span class="pull-right"> |<button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button> | <button class="btn btn-primary" @click="Showitem($event, i.name)">Show</button></span>
                             </li>
                         </ul>
                     </div>
 
 
 
-
+                    <div v-else class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item " v-for="i in task">{{i.id}} - {{i.name}} | <span class="pull-right"> |<button class="btn btn-danger" @click="Deleteitem(i.id)">Delete</button> | <button class="btn btn-primary" @click="updateitem($event, i.id)">Update</button> | <button class="btn btn-primary" @click="Showitem($event, i.name)">Show</button></span>
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
@@ -45,7 +50,7 @@ import EditPosts from './Edit.vue';
         },
         data(){
             return{
-        Results:{},
+                Result:{},
         Search:false,
         task:{},
         AddPostShow:false,
@@ -54,6 +59,7 @@ import EditPosts from './Edit.vue';
         Editpostshow:false,
         editdata:null,
         Searchitem:null,
+        ShowSearch:false
 
             }
             },
@@ -116,14 +122,16 @@ import EditPosts from './Edit.vue';
             submit:function(){
                 if(this.Searchitem.length>3){
                     let keyWord= this.Searchitem ;
+                    this.ShowSearch=true;
                     console.log(keyWord);
                     axios.get('/search/'+keyWord)
-                        .then((response) => this.task = response.data)
+                        .then((response) => this.Result = response.data)
                         .catch((error)=> (error));
                 }
 
                 else{
-                    console.log("NOT ")
+                    this.ShowSearch=false;
+                    console.log("Not Search ...")
 
                 }
             }
