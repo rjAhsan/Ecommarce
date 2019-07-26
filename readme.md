@@ -22,7 +22,7 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 
-<h3>Some Important Notes From LARAVEL RELATINOSSHIPS ORM</h3>
+<h3>Some Important Notes From(Author OF PRoject ) LARAVEL RELATINOSSHIPS ORM</h3>
 <p>
 1)One TO ONE :
 Customers To Phones
