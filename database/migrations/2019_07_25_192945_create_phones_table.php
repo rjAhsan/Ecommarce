@@ -17,8 +17,8 @@ class CreatePhonesTable extends Migration
             $table->Increments('id');
             $table->string('Brand')->unique();
             $table->string('Model')->nullable();
-            $table->integer('C_id')->unsigned();
-            $table->foreign('C_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->integer('Customers_id')->unsigned();
+            $table->foreign('Customers_id')->references('id')->on('customers')->onDelete('cascade');
 
             $table->timestamps();
         });

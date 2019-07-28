@@ -25,7 +25,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 <h3>Some Important Notes From(Author OF PRoject ) LARAVEL RELATINOSSHIPS ORM</h3>
 <p>
 1)One TO ONE :
-Customers To Phones
+Customers To Pho
 2)One To Many :
 School To Student
 3)Many To Many :
