@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('post');
 });
 
+Route::resource('test','CustomersController');
+
+
+
 
 Route::get('/Refreshing', function () {
 
