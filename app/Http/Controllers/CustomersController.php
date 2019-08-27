@@ -44,9 +44,14 @@ class CustomersController extends Controller
      * @param  \App\Customers  $customers
      * @return \Illuminate\Http\Response
      */
-    public function show(Customers $customers)
+    public function show(customers $customers)
     {
-        //
+       return $customers;
+
+    }
+
+    public function shows(Customers $customers){
+        return $customers;
     }
 
     /**

@@ -94,6 +94,10 @@ public function EditData(Request $request,$id){
 
 
     }
+    public function shows(Todo $todo){
+        return $todo->name;
+    }
+
 
     /**
      * Show the form for editing the specified resource.

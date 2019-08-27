@@ -1,5 +1,6 @@
 <?php
 use App\Todo;
+$Customers=2;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +16,30 @@ Route::get('/', function () {
     return view('post');
 });
 
-Route::resource('test','CustomersController');
+// #Route Redirect Funcationaly
+//Route::get('/A', function () {
+//   echo "IM Route A";
+//});
+//
+//Route::get('/B', function () {
+//    echo "IM Route B";
+//});
+//
+//Route::redirect('/A','/B',301);
 
+// #Route  Prefix
+//Route::prefix('admin')->group(function () {
+//    Route::get('users', function () {
+//        echo "Route Prefix";
+//    });
+//});
+
+
+
+//Route::resource('test','CustomersController');
+
+Route::get('/test/{customers}','CustomersController@shows');
+Route::get('/test2/{todo}','TodoController@shows');
 
 
 
@@ -44,3 +67,9 @@ Route::get('/search/{keyWord}','TodoController@Search');
 
 
 //Route::get('/newdata','TodoController@index');
+
+
+//Add FallBack If No Route Found Then fallback Function Call
+//Route::fallback(function() {
+//    return 'Hm, why did you land here somehow?';
+//});
